@@ -1,0 +1,5 @@
+replicaCount: 3
+ingress:
+  enabled: true ## because default me false hai isliye ynha par hmeme true kiya hai
+
+
