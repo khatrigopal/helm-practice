@@ -1,0 +1,48 @@
+agar hmare organization me differenent-2 env hai to hum helm ko use krte hai..
+hum template bnate hai jise alag alag evn me use krenge
+K8s manifest file problem hai
+terraform & application ka code alag-alag repo me hota hai because terraform wala code infra wale manager krte ahi but application ke liye developer ke sath kam krna hota hai.
+helm install tab chalte hai jab hum sari testing kar lete hai
+helm template use krte hai testing ke liye
+#helm create chart
+#helm template chart (koi bhi name) ./chart
+# helm lint bhi hum use kr skte hai (helm template ki jagah) -- ye terraform validate ke equal hai
+terraform me main.tf is equal to helm is template
+var.tf values.tf
+terraform.tfvars to dev.yaml & prod.yaml (like env wise), nhi to ye default values.yaml lega
+ab hamari requirement hai ki dev me 1 replica chaiye and prod me 3 replica chahiye
+#helm template todo .\chart\ --values .\env\prod.yaml -- isme jis files se value pas krvani hai usko --values se pas krvatge hai
+kubernetes me 2 name space create krenge
+#kubectl create ns dev
+#kubectl create ns prod
+# helm install todo ./chart --values .env/prod.yaml --namesapce prod
+# helm install todo ./chart --values .env/dev.yaml --namesapce dev
+next requirement prod me ingrss hona chahiye lekin dev me ingress install nhi krna hai
+ynha pr terraform me hum count use krte hai, jo resource banana hai uske liye
+helm ke liye hum if condtion use krenge
+hmne values.yaml me enabled: false define kiya hai or ingress me condition lga di hai
+hmne prod.yaml me below mention kiya because by default values.tf me ye false hai.
+    ingress:
+            enabled: true 
+#helm template todo .\chart\ -f .\env\prod.yaml (ynha par ingress bnega)
+helm template todo .\chart\ -f .\env\dev.yaml (ynha par ingress ni benga)
+
+ye sara private helm ka tha.
+
+########3
+
+Public helm
+
+wordpress deploy krte hai
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+hum phle values.yaml se phle apni wordpress.yaml create krte hai
+
+helm install my-wordpress bitnami/wordpress --version 18.1.29
+
+
+
+
+
+
